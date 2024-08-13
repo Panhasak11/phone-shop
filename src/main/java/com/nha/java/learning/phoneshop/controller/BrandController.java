@@ -29,5 +29,18 @@ public class BrandController {
 		brand = brandService.create(brand);
 		return ResponseEntity.ok(null);
 	}
+	
+	@GetMapping("{id}")
+	public ResponseEntity<?> getOneBrand(@PathVariable("id") Integer brandId){
+		Brand brand = brandService.getById(brandId);
+		return ResponseEntity.ok(Mapper.toBrandDto(brand));
+	}
+	
+	@PutMapping("{id}")
+	public ResponseEntity<?> update(@PathVariable("id") Integer branId, @RequestBody BrandDTO brandDTO){
+		Brand brand = Mapper.toBrand(brandDTO);
+		Brand updateBrand = brandService.update(branId, brand);
+		return ResponseEntity.ok(Mapper.toBrandDto(updateBrand));
+	}
 
 }
