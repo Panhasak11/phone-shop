@@ -10,6 +10,6 @@ import com.nha.java.learning.phoneshop.entity.Brand;
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Integer>{
 	
-//	List<Brand> findByNameIgnoreCase(String name);
+	List<Brand> findByNameIgnoreCase(String name);
 	List<Brand> findByNameLike(String name);
 }
