@@ -1,10 +1,12 @@
 package com.nha.java.learning.phoneshop.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nha.java.learning.phoneshop.dto.BrandDTO;
+import com.nha.java.learning.phoneshop.dto.PageDTO;
 import com.nha.java.learning.phoneshop.entity.Brand;
 import com.nha.java.learning.phoneshop.mapper.BrandMapper;
 import com.nha.java.learning.phoneshop.service.BrandService;
@@ -48,30 +51,20 @@ public class BrandController {
 		Brand updateBrand = brandService.update(branId, brand);
 		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDto(updateBrand));
 	}
-
-	@GetMapping
-	public ResponseEntity<?> getBrands(){
-		
-		List<BrandDTO> list = brandService.getBrands() 
-			.stream()
-			.map(brand -> BrandMapper.INSTANCE.toBrandDto(brand))
-			.collect(Collectors.toList());
-		
-		return ResponseEntity.ok(list);
-		
-//		return ResponseEntity.ok(brandService.getBrands());
-	}
 	
-	@GetMapping("filter")
-	public ResponseEntity<?> getBrands(@RequestParam("name") String name){
+	@GetMapping
+	public ResponseEntity<?> getBrands(@RequestParam Map<String, String> params){
 		
-		List<BrandDTO> list = brandService.getBrands(name) 
-			.stream()
-			.map(brand -> BrandMapper.INSTANCE.toBrandDto(brand))
-			.collect(Collectors.toList());
+		Page<Brand> page = brandService.getBrands(params);
 		
-		return ResponseEntity.ok(list);
+		PageDTO pageDTO = new PageDTO(page);
 		
-//		return ResponseEntity.ok(brandService.getBrands());
+//		List<BrandDTO> list = brandService.getBrands(params) 
+//			.stream()
+//			.map(brand -> BrandMapper.INSTANCE.toBrandDto(brand))
+//			.collect(Collectors.toList());
+		
+		return ResponseEntity.ok(pageDTO);
+//		return null;
 	}
 }
