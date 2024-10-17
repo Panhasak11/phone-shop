@@ -16,11 +16,14 @@ import com.nha.java.learning.phoneshop.service.util.PageUtil;
 import com.nha.java.learning.phoneshop.specification.BrandFilter;
 import com.nha.java.learning.phoneshop.specification.BrandSpec;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class BranServiceImp implements BrandService{
 	
 	@Autowired
-	private BrandRepository brandRepository;
+	private final BrandRepository brandRepository;
 	
 	@Override
 	public Brand create(Brand brand) {
@@ -31,8 +34,8 @@ public class BranServiceImp implements BrandService{
 	@Override
 	public Brand getById(Integer id) {
 		return brandRepository.findById(id)
-//				.orElseThrow(()-> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Brand with id = %d not found".formatted(id)));
 				.orElseThrow(()-> new ResourceNotFoundException("Brand", id));
+		
 	}
 
 	@Override

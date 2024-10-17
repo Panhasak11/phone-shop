@@ -32,4 +32,21 @@ public class BrandRepositoryTest {
 		assertEquals("Apple", brands.get(0).getName());
 		assertEquals(1, brands.get(0).getId());
 	}
+	
+//	@Test
+//	public void testFindByNameContaining() {
+////		given
+//		Brand brand = new Brand();
+//		brand.setName("Samsung");
+////		brand.setName("Apple");
+//		brandRepository.save(brand);
+//		
+////		when
+//		List<Brand> brandsCon = brandRepository.findByNameContaining("Samsung");
+//		
+////		given
+//		assertEquals(1, brandsCon.size());
+//		assertEquals("Samsung", brandsCon.get(0).getName());
+//		assertEquals(1, brandsCon.get(0).getId());
+//	}
 }
