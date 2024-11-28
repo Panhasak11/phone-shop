@@ -5,14 +5,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import com.nha.java.learning.phoneshop.dto.ModelDTO;
-import com.nha.java.learning.phoneshop.entity.Brand;
 import com.nha.java.learning.phoneshop.entity.Model;
 import com.nha.java.learning.phoneshop.service.BrandService;
 
 @Mapper(componentModel = "spring",uses = {BrandService.class})
-public interface ModelMapper {
+public interface ModelEntityMapper {
 	
-	ModelMapper INSTANCE = Mappers.getMapper(ModelMapper.class);
+	ModelEntityMapper INSTANCE = Mappers.getMapper(ModelEntityMapper.class);
 	
 	@Mapping(target = "brand", source = "brandId")
 	Model toModel(ModelDTO dto);
