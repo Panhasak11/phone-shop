@@ -8,4 +8,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: update 
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher

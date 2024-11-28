@@ -1,5 +1,7 @@
 package com.nha.java.learning.phoneshop.service.imp;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.nha.java.learning.phoneshop.entity.Model;
@@ -23,5 +25,12 @@ public class ModelServiceImp implements ModelService{
 		return modelRepository.save(model);
 	
 	}
+
+	@Override
+	public List<Model> findByBrandId(Integer id) {
+		return modelRepository.findByBrandId(id);
+	}
+
+	
 
 }
