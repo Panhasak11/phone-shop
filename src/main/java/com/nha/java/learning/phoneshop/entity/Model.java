@@ -18,8 +18,8 @@ import lombok.Data;
 public class Model {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "model_id")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "model_id")
 	private Integer id;
 	@Column(name = "model_name")
 	private String name;
