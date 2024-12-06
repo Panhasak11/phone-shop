@@ -7,6 +7,6 @@ import com.nha.java.learning.phoneshop.entity.Model;
 public interface ModelService{
 	
 	Model save(Model model);
-	List<Model> findByBrandId(Integer id);
+	List<Model> findByBrandId(Long id);
 
 }

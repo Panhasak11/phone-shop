@@ -1,0 +1,34 @@
+>>tbBrad
+	id,name
+	
+>>tbModels
+	id,name,brandId
+
+>>tbColor
+	id,name
+	
+>>tbProduct
+	id
+	available_unit
+	image_path
+	sale_price
+	color_id
+	model_id
+	
+>>tbProductImportHistory
+	id
+	date_import
+	import_unit
+	price_per_unit
+	product_id
+	
+>>tbSale
+	id
+	sale_date
+	
+>>tbSaleDetail
+	id
+	sale_id
+	product_id
+	amount
+	unit
