@@ -27,7 +27,7 @@ public class ModelServiceImp implements ModelService{
 	}
 
 	@Override
-	public List<Model> findByBrandId(Integer id) {
+	public List<Model> findByBrandId(Long id) {
 		return modelRepository.findByBrandId(id);
 	}
 

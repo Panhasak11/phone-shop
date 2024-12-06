@@ -14,7 +14,6 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addMapping("/**")
 		.allowedOriginPatterns("http://localhost:4200" ,"http://localhost:4201");//web localhost that use angular framework
 		
-		
 	}
 
 }

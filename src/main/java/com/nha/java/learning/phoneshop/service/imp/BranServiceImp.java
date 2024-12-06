@@ -32,14 +32,14 @@ public class BranServiceImp implements BrandService{
 	}
 	
 	@Override
-	public Brand getById(Integer id) {
+	public Brand getById(Long id) {
 		return brandRepository.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Brand", id));
 		
 	}
 
 	@Override
-	public Brand update(Integer id, Brand brandUpdate) {
+	public Brand update(Long id, Brand brandUpdate) {
 		Brand brand = getById(id);
 		brand.setName(brandUpdate.getName());
 		return brandRepository.save(brand);
@@ -105,5 +105,6 @@ public class BranServiceImp implements BrandService{
 		return page;
 		
 	}
+
 	
 }

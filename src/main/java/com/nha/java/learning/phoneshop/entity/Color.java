@@ -1,8 +1,5 @@
 package com.nha.java.learning.phoneshop.entity;
 
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,14 +11,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbBrands")
-public class Brand {
-	
+@Table(name = "tbColor")
+public class Color {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "brand_id")
-	private Long id;
-	@Column(name = "brand_name")
-	private String name;
-	
+	@Column(name = "colorId")
+	private Long color_id;
+	@Column(name = "colorName")
+	private String color_name;
 }
