@@ -4,6 +4,6 @@ import com.nha.java.learning.phoneshop.entity.Brand;
 
 public interface BrandService {
 	Brand create(Brand brand);
-	Brand getById(Integer id);
-	Brand update(Integer id, Brand brandUpdate);
+	Brand getById(Long id);
+	Brand update(Long id, Brand brandUpdate);
 }

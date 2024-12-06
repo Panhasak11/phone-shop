@@ -2,6 +2,7 @@ package com.nha.java.learning.phoneshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,16 +32,15 @@ public class BrandController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<?> getOneBrand(@PathVariable("id") Integer brandId){
+	public ResponseEntity<?> getOneBrand(@PathVariable("id") Long brandId){
 		Brand brand = brandService.getById(brandId);
 		return ResponseEntity.ok(Mapper.toBrandDto(brand));
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Integer branId, @RequestBody BrandDTO brandDTO){
+	public ResponseEntity<?> update(@PathVariable("id") Long branId, @RequestBody BrandDTO brandDTO){
 		Brand brand = Mapper.toBrand(brandDTO);
 		Brand updateBrand = brandService.update(branId, brand);
 		return ResponseEntity.ok(Mapper.toBrandDto(updateBrand));
 	}
-
 }
