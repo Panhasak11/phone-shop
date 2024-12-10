@@ -10,12 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbProducts")
+@Table(name = "tbProducts", uniqueConstraints = {@UniqueConstraint(columnNames = {"colorId","model_id"})})
 public class Product {
 
 	@Id
