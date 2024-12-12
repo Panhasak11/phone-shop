@@ -29,6 +29,7 @@ public class ModelServiceImp implements ModelService{
 
 	@Override
 	public List<Model> findByBrandId(Long id) {
+		
 		return modelRepository.findByBrandId(id);
 	}
 
@@ -37,6 +38,13 @@ public class ModelServiceImp implements ModelService{
 		// TODO Auto-generated method stub
 		return modelRepository.findById(id)
 				.orElseThrow(()-> new ResourceNotFoundException("Model ", id));
+	}
+
+	@Override
+	public Model update(Long id, Model modelUpdate) {
+		Model model = getById(id);
+		model.setName(modelUpdate.getName());
+		return modelRepository.save(model);	
 	}
 
 	

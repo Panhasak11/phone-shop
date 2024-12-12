@@ -16,6 +16,7 @@ public interface ModelEntityMapper {
 	@Mapping(target = "brand", source = "brandId")
 	Model toModel(ModelDTO dto);
 	
+	
 	@Mapping(target = "brandId", source = "brand.id")
 	ModelDTO toModelDTO(Model model);
 	

@@ -17,7 +17,7 @@ public class ProductServiceImp implements ProductService{
 	@Override
 	public Product create(Product product) {
 		String name = "%s %s"
-				.formatted(product.getModel().getName(),product.getColor().getColor_name());
+				.formatted(product.getModel().getName(),product.getColor().getName());
 		return productRepository.save(product);
 	}
 

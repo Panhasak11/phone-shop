@@ -17,12 +17,12 @@ public class ColorServiceImp implements ColorService{
 	@Override
 	public Color creat(Color color) {
 		// TODO Auto-generated method stub
-		return null;
+		return colorRepository.save(color);
 	}
 
 	@Override
 	public Color getById(Long colorId) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		return colorRepository.findById(colorId)
 				.orElseThrow(()-> new ResourceNotFoundException("Color", colorId));
 	}

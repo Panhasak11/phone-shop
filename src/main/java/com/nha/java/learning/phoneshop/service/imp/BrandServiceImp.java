@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BranServiceImp implements BrandService{
+public class BrandServiceImp implements BrandService{
 	
 	@Autowired
 	private final BrandRepository brandRepository;
@@ -48,7 +48,7 @@ public class BranServiceImp implements BrandService{
 
 	
 	@Override
-	public List<Brand> getBrands(String name) {
+	public List<Brand> getBrandName(String name) {
 //		return brandRepository.findByNameLike("%"+name+"%");
 		return brandRepository.findByNameContaining(name);
 
@@ -106,5 +106,11 @@ public class BranServiceImp implements BrandService{
 		return page;
 		
 	}
+//
+//	@Override
+//	public Brand getByName(Brand brandName) {
+//		List<Brand> byNameIgnoreCase = brandRepository.findByNameIgnoreCase("%"+brandName+"%");
+//		return null;
+//	}
 		
 }

@@ -49,7 +49,7 @@ public class BrandController {
 	public ResponseEntity<?> getOneBrand(@PathVariable("id") Long brandId){
 		Brand brand = brandService.getById(brandId);
 		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDto(brand));
-	}
+	}	
 	
 	@PutMapping("{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Long branId, @RequestBody BrandDTO brandDTO){
@@ -82,4 +82,6 @@ public class BrandController {
 			.toList();
 		return ResponseEntity.ok(list);
 	}
+	
+	
 }
