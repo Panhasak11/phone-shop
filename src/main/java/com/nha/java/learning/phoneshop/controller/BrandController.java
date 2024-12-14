@@ -83,5 +83,10 @@ public class BrandController {
 		return ResponseEntity.ok(list);
 	}
 	
-	
+	@DeleteMapping("{id}")
+	public ResponseEntity<?> deleteBrand(@PathVariable("id") Long brandId,@RequestBody BrandDTO brandDTO){
+		Brand brand = brandService.getById(brandId);
+		brandService.delete(brandId);
+		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDto(brand));
+	}
 }

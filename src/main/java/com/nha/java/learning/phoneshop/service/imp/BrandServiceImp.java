@@ -49,8 +49,8 @@ public class BrandServiceImp implements BrandService{
 	
 	@Override
 	public List<Brand> getBrandName(String name) {
-//		return brandRepository.findByNameLike("%"+name+"%");
-		return brandRepository.findByNameContaining(name);
+		return brandRepository.findByNameLike("%"+name+"%");
+//		return brandRepository.findByNameContaining(name);
 
 	}
 
@@ -106,11 +106,11 @@ public class BrandServiceImp implements BrandService{
 		return page;
 		
 	}
-//
-//	@Override
-//	public Brand getByName(Brand brandName) {
-//		List<Brand> byNameIgnoreCase = brandRepository.findByNameIgnoreCase("%"+brandName+"%");
-//		return null;
-//	}
-		
+	
+	@Override
+	public void delete(Long id) {
+		Brand brandId = getById(id);
+		brandRepository.delete(brandId);
+	}
+
 }
