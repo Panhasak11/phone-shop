@@ -3,9 +3,7 @@ package com.nha.java.learning.phoneshop.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,9 +82,8 @@ public class BrandController {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> deleteBrand(@PathVariable("id") Long brandId,@RequestBody BrandDTO brandDTO){
-		Brand brand = brandService.getById(brandId);
-		brandService.delete(brandId);
-		return ResponseEntity.ok(BrandMapper.INSTANCE.toBrandDto(brand));
+	public ResponseEntity<?> deleteBrand(@PathVariable("id") Long brandId){
+		brandService.deleteById(brandId);
+		return ResponseEntity.ok().build();
 	}
 }

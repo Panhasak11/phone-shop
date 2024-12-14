@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -106,11 +107,10 @@ public class BrandServiceImp implements BrandService{
 		return page;
 		
 	}
-	
+
 	@Override
-	public void delete(Long id) {
+	public void deleteById(Long id) {
 		Brand brandId = getById(id);
 		brandRepository.delete(brandId);
 	}
-
 }
