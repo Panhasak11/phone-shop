@@ -106,11 +106,10 @@ public class BrandServiceImp implements BrandService{
 		return page;
 		
 	}
-	
+
 	@Override
-	public void delete(Long id) {
+	public void deleteById(Long id) {
 		Brand brandId = getById(id);
 		brandRepository.delete(brandId);
 	}
-
 }

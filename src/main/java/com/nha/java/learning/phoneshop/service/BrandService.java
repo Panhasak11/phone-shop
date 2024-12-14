@@ -14,5 +14,5 @@ public interface BrandService {
 	List<Brand> getBrandName(String name);
 //	List<Brand> getBrands(Map<String, String> params);
 	Page<Brand> getBrands(Map<String, String> params);
-	void delete(Long id);
+	void deleteById(Long id);
 }
