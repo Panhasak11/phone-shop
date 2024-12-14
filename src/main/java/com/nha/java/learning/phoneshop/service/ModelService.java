@@ -9,5 +9,6 @@ public interface ModelService{
 	Model save(Model model);
 	List<Model> findByBrandId(Long id);
 	Model getById(Long id);
+	Model update(Long id,Model modelUpdate);
 
 }

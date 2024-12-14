@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.nha.java.learning.phoneshop.entity.Brand;
 import com.nha.java.learning.phoneshop.exception.ResourceNotFoundException;
 import com.nha.java.learning.phoneshop.repository.BrandRepository;
-import com.nha.java.learning.phoneshop.service.imp.BranServiceImp;
+import com.nha.java.learning.phoneshop.service.imp.BrandServiceImp;
 
 @ExtendWith(MockitoExtension.class)
 public class BrandServiceTest {
@@ -29,7 +29,7 @@ public class BrandServiceTest {
 	
 	@BeforeEach
 	public void setUp() {
-		brandService = new BranServiceImp(brandRepository);
+		brandService = new BrandServiceImp(brandRepository);
 	}
 	
 //	@Test
