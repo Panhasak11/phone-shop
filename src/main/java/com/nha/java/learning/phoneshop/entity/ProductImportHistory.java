@@ -1,7 +1,7 @@
 package com.nha.java.learning.phoneshop.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,25 +16,25 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbProImportHistory")
+@Table(name = "tbProductImportHistory")
 public class ProductImportHistory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "proImportId")
-	private Long proImportId;
+	@Column(name = "importId")
+	private Long id;
 	
 	@Column(name = "dateImport")
-	private LocalDateTime dateImport;
+	private LocalDate dateImport;
 	
 	@Column(name = "importUnit")
 	private Integer importUnit;
 	
 	@Column(name = "pricePerUnit")
-	private BigDecimal pricePerUnit;
+	private BigDecimal importPrice;
 	
 	@ManyToOne
-	@JoinColumn(name = "proId")
+	@JoinColumn(name = "productId")
 	private Product product;
 	
 }
