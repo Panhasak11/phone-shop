@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ModelDTO {
 
-	Integer modelId;
+//	Integer modelId;
 	Integer brandId;
 	String name;
 }

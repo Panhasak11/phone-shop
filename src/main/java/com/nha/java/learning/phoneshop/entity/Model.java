@@ -19,9 +19,9 @@ public class Model {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "model_id")
+	@Column(name = "modelId")
 	private Long id;
-	@Column(name = "model_name")
+	@Column(name = "modelName")
 	private String name;
 	
 	@ManyToOne

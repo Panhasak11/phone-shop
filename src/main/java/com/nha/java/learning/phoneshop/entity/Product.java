@@ -16,16 +16,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbProducts", uniqueConstraints = {@UniqueConstraint(columnNames = {"colorId","model_id"})})
+@Table(name = "tbProducts", uniqueConstraints = {@UniqueConstraint(columnNames = {"colorId","modelId"})})
 public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "proId")
-	private Long proId;
+	@Column(name = "productId")
+	private Long productId;
 	
-	@Column(name = "proName")
-	private String proName;
+	@Column(name = "productName", unique = true)
+	private String productName;
 	
 	@Column(name = "availableUnit")
 	private Integer avilableUnit;
@@ -38,7 +38,7 @@ public class Product {
 	private Color color;
 	
 	@ManyToOne
-	@JoinColumn(name = "model_id")
+	@JoinColumn(name = "modelId")
 	private Model model;
 	
 	@Column(name = "salePrice")
