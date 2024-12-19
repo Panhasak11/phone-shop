@@ -1,7 +1,6 @@
 package com.nha.java.learning.phoneshop.entity;
 
-
-
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,14 +13,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbBrands")
-public class Brand {
+@Table(name="tbSale")
+public class Sale {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "brand_id")
-	private Long id;
-	@Column(name = "brand_name")
-	private String name;
+	@Column(name = "saleId")
+	private Long saleId;
 	
+	@Column(name = "saleDate")
+	private LocalDateTime saleDate;
 }
