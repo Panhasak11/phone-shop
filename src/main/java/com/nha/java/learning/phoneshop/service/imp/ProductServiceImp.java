@@ -1,5 +1,7 @@
 package com.nha.java.learning.phoneshop.service.imp;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Service;
 
 import com.nha.java.learning.phoneshop.dto.ProductImportDTO;
@@ -53,5 +55,13 @@ public class ProductServiceImp implements ProductService{
 		ProductImportHistory importHistory = productMapper.toProductImport(importDTO, product);
 		importHistoryRepository.save(importHistory);
 	}
+
+	@Override
+	public void setSalePrice(Long productId, BigDecimal price) {
+		Product product = getById(productId);
+		product.setSalePrice(price);
+		productRepository.save(product);
+	}
+
 
 }

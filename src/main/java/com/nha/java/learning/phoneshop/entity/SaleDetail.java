@@ -31,7 +31,7 @@ public class SaleDetail {
 	
 
 	@ManyToOne
-	@JoinColumn(name = "proId")
+	@JoinColumn(name = "productId")
 	private Product product;
 	
 	@Column(name = "amount")
