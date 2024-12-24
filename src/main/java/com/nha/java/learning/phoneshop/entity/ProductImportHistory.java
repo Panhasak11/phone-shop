@@ -37,7 +37,7 @@ public class ProductImportHistory {
 	private BigDecimal importPrice;
 	
 	@ManyToOne
-	@JoinColumn(name = "productId")
+	@JoinColumn(name = "productId") 
 	private Product product;
 	
 }
