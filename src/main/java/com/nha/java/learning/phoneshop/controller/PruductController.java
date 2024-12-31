@@ -1,5 +1,7 @@
 package com.nha.java.learning.phoneshop.controller;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nha.java.learning.phoneshop.dto.PriceDTO;
 import com.nha.java.learning.phoneshop.dto.ProductDTO;
@@ -44,5 +48,11 @@ public class PruductController {
 	private ResponseEntity<?> setSalePrice(@PathVariable Long productId, @RequestBody PriceDTO priceDTO){
 		productService.setSalePrice(productId, priceDTO.getPrice());
 		return ResponseEntity.ok().build();
+	}
+	
+	@PostMapping("uploadProduct")
+	private ResponseEntity<?> uploadProduct(@RequestParam("file") MultipartFile inputFile){
+		Map<Integer, String> errorMap = productService.uploadProduct(inputFile);
+		return ResponseEntity.ok(errorMap);
 	}
 }
