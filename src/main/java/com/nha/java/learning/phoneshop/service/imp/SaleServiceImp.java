@@ -14,6 +14,7 @@ import com.nha.java.learning.phoneshop.entity.Product;
 import com.nha.java.learning.phoneshop.entity.Sale;
 import com.nha.java.learning.phoneshop.entity.SaleDetail;
 import com.nha.java.learning.phoneshop.exception.ApiException;
+import com.nha.java.learning.phoneshop.exception.ResourceNotFoundException;
 import com.nha.java.learning.phoneshop.repository.ProductRepository;
 import com.nha.java.learning.phoneshop.repository.SaleDetailRespositor;
 import com.nha.java.learning.phoneshop.repository.SaleRespositor;
@@ -83,6 +84,38 @@ public class SaleServiceImp implements SaleService {
 		//validate product
 		
 		//validate stock
+	}
+
+	@Override
+	public void cancelSale(Long saleId) {
+		//update sale status
+		Sale sale = getBySaleId(saleId);
+		sale.setActive(false);
+		saleRespositor.save(sale);
+		
+		//update stock
+		List<SaleDetail> saleDetails = saleDetailRespositor.findBySaleId(saleId);
+		
+		List<Long> productId = saleDetails.stream()
+				.map(sd -> sd.getProduct().getProductId())
+				.toList();
+		
+		List<Product> products = productRepository.findAllById(productId);
+		Map<Long, Product> productMap = products.stream()
+			.collect(Collectors.toMap(Product::getProductId, Function.identity()));
+		
+		saleDetails.forEach(sd->{
+			Product product = productMap.get(sd.getProduct().getProductId());
+			product.setAvilableUnit(product.getAvilableUnit() + sd.getUnit());
+			productRepository.save(product);
+		});
+		
+	}
+
+	@Override
+	public Sale getBySaleId(Long saleId) {
+		return saleRespositor.findById(saleId)
+				.orElseThrow(()-> new ResourceNotFoundException("Sale", saleId));
 	}
 
 }

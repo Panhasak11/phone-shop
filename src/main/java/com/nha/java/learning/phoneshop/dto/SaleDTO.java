@@ -1,6 +1,6 @@
 package com.nha.java.learning.phoneshop.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
@@ -12,5 +12,5 @@ public class SaleDTO {
 
 	@NotEmpty
 	private List<ProductSoleDTO> products;
-	private LocalDate saleDate;
+	private LocalDateTime saleDate;
 }
