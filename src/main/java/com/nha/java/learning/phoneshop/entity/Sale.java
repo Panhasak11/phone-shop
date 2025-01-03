@@ -1,6 +1,6 @@
 package com.nha.java.learning.phoneshop.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,8 +19,10 @@ public class Sale {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "saleId")
-	private Long saleId;
+	private Long id;
 	
 	@Column(name = "saleDate")
-	private LocalDate saleDate;
+	private LocalDateTime saleDate;	
+	
+	private Boolean active;
 }

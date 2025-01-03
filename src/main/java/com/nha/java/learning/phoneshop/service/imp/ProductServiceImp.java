@@ -2,6 +2,7 @@ package com.nha.java.learning.phoneshop.service.imp;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -111,9 +112,10 @@ public class ProductServiceImp implements ProductService{
 						throw new ApiException(HttpStatus.BAD_REQUEST, "Unit must be greater that 0");
 					}
 					
+					
 					Cell cellImportDate = row.getCell(cellIndex++);
 					LocalDateTime importDate = cellImportDate.getLocalDateTimeCellValue();
-					System.out.println("Date  "+importDate);
+					System.out.println("Date  " + importDate);
 					
 					Product product = getByModelIdAndColorId(modelId, colorId);
 					
