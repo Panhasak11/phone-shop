@@ -110,6 +110,10 @@
 		    <artifactId>fastexcel</artifactId>
 		    <version>0.18.1</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
 				
 	</dependencies>
 

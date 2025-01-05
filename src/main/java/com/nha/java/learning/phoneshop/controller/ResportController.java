@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nha.java.learning.phoneshop.dto.ProductReportDTO;
 import com.nha.java.learning.phoneshop.projection.ProductSold;
 import com.nha.java.learning.phoneshop.service.ReportService;
 
@@ -27,5 +28,12 @@ public class ResportController {
 			@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate endDate){
 		List<ProductSold> productSolds = reportService.getProductSold(startDate, endDate);
 		return ResponseEntity.ok(productSolds);
+	}
+	
+	@GetMapping("v2/{startDate}/{endDate}")
+	public ResponseEntity<?> getReportv2(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate startDate, 
+			@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable LocalDate endDate){
+		List<ProductReportDTO> resport = reportService.getProductResport(startDate, endDate);
+		return ResponseEntity.ok(resport);
 	}
 }

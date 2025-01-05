@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.nha.java.learning.phoneshop.entity.Sale;
 import com.nha.java.learning.phoneshop.projection.ProductSold;
 
-public interface SaleRespositor extends JpaRepository<Sale, Long>{
+public interface SaleRespository extends JpaRepository<Sale, Long>{
 
 	@Query(value = "SELECT p.product_id AS productId, p.product_name AS productName, \r\n"
 			+ "	SUM(sd.unit) AS totalUnit, SUM(sd.unit * sd.amount) AS totalAmount \r\n"
