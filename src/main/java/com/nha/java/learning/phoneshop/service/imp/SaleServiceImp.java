@@ -16,8 +16,8 @@ import com.nha.java.learning.phoneshop.entity.SaleDetail;
 import com.nha.java.learning.phoneshop.exception.ApiException;
 import com.nha.java.learning.phoneshop.exception.ResourceNotFoundException;
 import com.nha.java.learning.phoneshop.repository.ProductRepository;
-import com.nha.java.learning.phoneshop.repository.SaleDetailRespositor;
-import com.nha.java.learning.phoneshop.repository.SaleRespositor;
+import com.nha.java.learning.phoneshop.repository.SaleDetailRespository;
+import com.nha.java.learning.phoneshop.repository.SaleRespository;
 import com.nha.java.learning.phoneshop.service.ProductService;
 import com.nha.java.learning.phoneshop.service.SaleService;
 
@@ -29,8 +29,8 @@ public class SaleServiceImp implements SaleService {
 
 	private final ProductService productService;
 	private final ProductRepository productRepository;
-	private final SaleRespositor saleRespositor;
-	private final SaleDetailRespositor saleDetailRespositor;
+	private final SaleRespository saleRespository;
+	private final SaleDetailRespository saleDetailRespository;
 	
 	@Override
 	public void sell(SaleDTO saleDTO) {
@@ -59,7 +59,7 @@ public class SaleServiceImp implements SaleService {
 		//save sale
 		Sale sale = new Sale();
 		sale.setSaleDate(saleDTO.getSaleDate());
-		saleRespositor.save(sale);
+		saleRespository.save(sale);
 		
 		//save sale detail
 		saleDTO.getProducts().forEach(ps ->{
@@ -69,7 +69,7 @@ public class SaleServiceImp implements SaleService {
 			saleDetail.setProduct(product);
 			saleDetail.setSale(sale);
 			saleDetail.setUnit(ps.getNumberOfUnit());
-			saleDetailRespositor.save(saleDetail);
+			saleDetailRespository.save(saleDetail);
 			
 			//cut stock
 			Integer availableUnit = product.getAvilableUnit() - ps.getNumberOfUnit();
@@ -91,10 +91,10 @@ public class SaleServiceImp implements SaleService {
 		//update sale status
 		Sale sale = getBySaleId(saleId);
 		sale.setActive(false);
-		saleRespositor.save(sale);
+		saleRespository.save(sale);
 		
 		//update stock
-		List<SaleDetail> saleDetails = saleDetailRespositor.findBySaleId(saleId);
+		List<SaleDetail> saleDetails = saleDetailRespository.findBySaleId(saleId);
 		
 		List<Long> productId = saleDetails.stream()
 				.map(sd -> sd.getProduct().getProductId())
@@ -114,7 +114,7 @@ public class SaleServiceImp implements SaleService {
 
 	@Override
 	public Sale getBySaleId(Long saleId) {
-		return saleRespositor.findById(saleId)
+		return saleRespository.findById(saleId)
 				.orElseThrow(()-> new ResourceNotFoundException("Sale", saleId));
 	}
 

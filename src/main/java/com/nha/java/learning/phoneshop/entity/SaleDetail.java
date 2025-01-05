@@ -29,7 +29,6 @@ public class SaleDetail {
 	@JoinColumn(name = "saleId")
 	private Sale sale;
 	
-
 	@ManyToOne
 	@JoinColumn(name = "productId")
 	private Product product;
