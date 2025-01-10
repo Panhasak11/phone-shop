@@ -32,7 +32,7 @@ public class SaleDetaileSpec implements Specification<SaleDetail>{
 		List<Predicate> predicates = new ArrayList<>();
 		Join<SaleDetail, Sale> sale = saleDetail.join("sale");
 		if(Objects.nonNull(detailFilter.getStartDate())) {
-			cb.greaterThanOrEqualTo(sale.get("saleDate"), detailFilter.startDate);
+			cb.greaterThanOrEqualTo(sale.get("saleDate"), detailFilter.getStartDate());
 		}
 		if(Objects.nonNull(detailFilter.getEndDate())) {
 			cb.greaterThanOrEqualTo(sale.get("saleDate"), detailFilter.getEndDate());

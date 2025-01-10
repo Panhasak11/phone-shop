@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class SaleDetailFilter {
+public class ProductImportHistoryFilter {
 
 	private LocalDate startDate;
 	private LocalDate endDate;
