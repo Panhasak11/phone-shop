@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class ProductReportDTO {
 
-	Long productId;
-	String productName;
-	Integer unit;
-	BigDecimal totalAmount;
+	private Long productId;
+	private String productName;
+	private Integer unit;
+	private BigDecimal totalAmount;
 }
