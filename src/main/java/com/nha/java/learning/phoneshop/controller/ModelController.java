@@ -1,5 +1,7 @@
 package com.nha.java.learning.phoneshop.controller;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,8 @@ public class ModelController {
 	private final ModelService modelService;
 	private final ModelEntityMapper modelEntityMapper;
 	
-//	@RequestMapping(method = RequestMethod.POST)
+
+	@RolesAllowed("ROLE_ADMIN")
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody ModelDTO modelDTO){
 		Model model = modelEntityMapper.toModel(modelDTO);
