@@ -9,11 +9,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import com.nha.java.learning.phoneshop.config.jwt.JwtLoginFilter;
+import com.nha.java.learning.phoneshop.config.jwt.TokenVerifyFilter;
 
 @Configuration
 @EnableGlobalMethodSecurity(
@@ -28,6 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
+			.addFilter(new JwtLoginFilter(authenticationManager()))
+			.addFilterAfter(new TokenVerifyFilter(), JwtLoginFilter.class)
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
 			.authorizeHttpRequests()
 			.antMatchers("/","index.html","css/**","js/**").permitAll()
 //			.antMatchers("/models").hasRole(RoleEnum.SALE.name()) //role base
@@ -35,9 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //			.antMatchers(HttpMethod.POST, "/brands").hasAuthority(BRAND_WRITE.getDescription()) //permission base
 //			.antMatchers(HttpMethod.GET, "/brands").hasAuthority(BRAND_READ.getDescription())
 			.anyRequest()
-			.authenticated()
-			.and()
-			.httpBasic();
+			.authenticated();
 	}
 	
 	@Bean
