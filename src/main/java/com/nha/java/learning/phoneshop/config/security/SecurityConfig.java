@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -28,6 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -46,27 +51,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.authenticated();
 	}
 	
-	@Bean
-	@Override
-	protected UserDetailsService userDetailsService() {
+//	@Bean
+//	@Override
+//	protected UserDetailsService userDetailsService() {
+//	
+//		UserDetails user1 = User.builder()
+//				.username("dara")
+//				.password(passwordEncoder.encode("dara123"))
+//				.authorities(RoleEnum.SALE.getAuthorities())				
+//				.build();
+//		
+//		UserDetails user2 = User.builder()
+//			.username("vanda")
+//			.password(passwordEncoder.encode("vanda123"))
+////			.roles("SALE")
+//			.authorities(RoleEnum.ADMIN.getAuthorities()) //collection GrantedAuthority 
+//			.build();
+//		
+//		
+////		UserDetails
+//		UserDetailsService userDetailsService = new InMemoryUserDetailsManager(user1,user2);
+//		
+//		return userDetailsService;
+//	}
 	
-		UserDetails user1 = User.builder()
-				.username("dara")
-				.password(passwordEncoder.encode("dara123"))
-				.authorities(RoleEnum.SALE.getAuthorities())				
-				.build();
-		
-		UserDetails user2 = User.builder()
-			.username("vanda")
-			.password(passwordEncoder.encode("vanda123"))
-//			.roles("SALE")
-			.authorities(RoleEnum.ADMIN.getAuthorities()) //collection GrantedAuthority 
-			.build();
-		
-		
-//		UserDetails
-		UserDetailsService userDetailsService = new InMemoryUserDetailsManager(user1,user2);
-		
-		return userDetailsService;
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(getAuthenticationProvider());
 	}
+	
+	@Bean
+	public AuthenticationProvider getAuthenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService);
+		authenticationProvider.setPasswordEncoder(passwordEncoder);
+		return authenticationProvider;
+	}
+	
 }

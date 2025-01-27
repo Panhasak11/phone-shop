@@ -10,12 +10,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.nha.java.learning.phoneshop.entity.Brand;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @DataJpaTest
 public class BrandRepositoryTest {
 	
 	@Autowired
 	private BrandRepository brandRepository;
-	
+
 	@Test
 	public void testFindByNameLike() {
 //		give
