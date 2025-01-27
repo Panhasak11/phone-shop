@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class GeneralUtilTest {
 	
@@ -33,5 +34,12 @@ public class GeneralUtilTest {
 		assertEquals(4, eventNumber.size());
 		assertEquals(4, eventNumber.get(0));
 		
+	}
+	
+	@Test
+	public void password() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encode = encoder.encode("khann123");
+		System.out.println(encode);
 	}
 }
