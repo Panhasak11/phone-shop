@@ -39,7 +39,7 @@ public class GeneralUtilTest {
 	@Test
 	public void password() {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encode = encoder.encode("khann123");
+		String encode = encoder.encode("thida123");
 		System.out.println(encode);
 	}
 }

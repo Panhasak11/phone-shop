@@ -1,11 +1,15 @@
 package com.nha.java.learning.phoneshop.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.nha.java.learning.phoneshop.config.security.RoleEnum;
@@ -24,11 +28,14 @@ public class User {
 	private String lastname;
 	private String username;
 	private String password;
-	
-	@Enumerated(EnumType.STRING)
-	private RoleEnum role;
+
+//	@Enumerated(EnumType.STRING)
+//	private RoleEnum role;
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 	private boolean enabled;
+	
+	@ManyToMany(fetch = FetchType.EAGER	)
+	private Set<Role> roles;
 }

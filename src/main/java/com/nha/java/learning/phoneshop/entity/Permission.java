@@ -1,9 +1,5 @@
 package com.nha.java.learning.phoneshop.entity;
 
-
-
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,14 +10,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbBrands")
-public class Brand extends AuditEntiity{
-	
+@Table(name = "tbPermissions")
+public class Permission {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "brandId")
+	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
-	@Column(unique = true ,name = "brandName")
 	private String name;
-	
 }
