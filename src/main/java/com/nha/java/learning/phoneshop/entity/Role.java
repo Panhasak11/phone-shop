@@ -1,27 +1,27 @@
 package com.nha.java.learning.phoneshop.entity;
 
+import java.util.Set;
 
-
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "tbBrands")
-public class Brand extends AuditEntiity{
-	
+@Table(name = "tbRoles")
+public class Role {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "brandId")
 	private Long id;
-	@Column(unique = true ,name = "brandName")
 	private String name;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Set<Permission> permissions;
 }
